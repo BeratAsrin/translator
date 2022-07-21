@@ -5,7 +5,10 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from googletrans import Translator
 
+
 class SayHello(App):
+    translator = Translator()
+
     def build(self):
         self.window = GridLayout()
         self.window.cols = 1
@@ -22,10 +25,9 @@ class SayHello(App):
 
         return self.window
 
-    def button_clicked(self,event):
-        translator = Translator()
+    def button_clicked(self, event):
         input_text = self.input_language_text.text
-        self.translation_label.text = translator.translate(text=input_text, dest="tr").text
+        self.translation_label.text = SayHello.translator.translate(text=input_text, dest="tr").text
 
 
 if __name__ == "__main__":
